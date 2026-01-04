@@ -132,7 +132,7 @@ leaderboard inputPlayer(BinTree tree) {
     cin >> p.id;
 
     if (isIdExist(tree, p.id)) {
-        cout << ">> ID sudah ada! Masukkan ID lain.\n";
+        cout << "  | ID sudah ada! Masukkan ID lain.\n";
     }
         }while(isIdExist(tree, p.id));
 
@@ -223,7 +223,7 @@ node mostRight(BinTree tree){
 
 node mostLeft(BinTree tree){
     while (tree->left != Nil){
-        tree = tree->right;
+        tree = tree->left;
     }
     return tree;
 }
