@@ -3,12 +3,9 @@
 #include <limits>
 using namespace std;
 
-// ================== UTILITIES ==================
 void clearScreen() {
 #ifdef _WIN32
     system("cls");
-#else
-    system("clear");
 #endif
 }
 
@@ -18,7 +15,14 @@ void pause() {
     cin.get();
 }
 
-void showMenu() {
+int main() {
+    BinTree tree;
+    createTree(tree);
+
+    int choice;
+
+    do {
+        clearScreen();
     cout << "==========================================================================\n";
     cout << "  |                        MENU LEADERBOARD BST                        |\n";
     cout << "==========================================================================\n";
@@ -34,18 +38,6 @@ void showMenu() {
     cout << "  | 0. Keluar                                                          |\n";
     cout << "==========================================================================\n";
     cout << "Pilih menu: ";
-}
-
-// ================== MAIN ==================
-int main() {
-    BinTree tree;
-    createTree(tree);
-
-    int choice;
-
-    do {
-        clearScreen();
-        showMenu();
         cin >> choice;
 
         clearScreen();

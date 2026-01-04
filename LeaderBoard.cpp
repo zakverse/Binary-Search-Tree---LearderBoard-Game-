@@ -1,5 +1,6 @@
 #include "leaderboard.h"
 #include <iostream>
+#include <limits>
 #include <iomanip>
 
 using namespace std;
@@ -121,7 +122,13 @@ leaderboard inputPlayer() {
     cout << "  | Username   : ";
     cin >> p.username;
     cout << "  | Score      : ";
-    cin >> p.score;
+    
+    while (!(cin >> p.score)) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "  | Score harus ANGKA! Masukkan ulang: ";
+    }
+
     p.level = tentukanLevel(p.score);
     p.rank = tentukanRank(p.score);
     return p;
