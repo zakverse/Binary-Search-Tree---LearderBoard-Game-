@@ -45,7 +45,7 @@ int main() {
         switch (choice) {
 
         case 1: {
-            leaderboard p = inputPlayer();
+            leaderboard p = inputPlayer(tree);
             insertNode(tree, alokasi(p));
             cout << ">> Pemain berhasil ditambahkan!\n";
             break;
