@@ -124,22 +124,36 @@ bool isIdExist(BinTree tree, string id) {
 
 leaderboard inputPlayer(BinTree tree) {
     leaderboard p;
+    bool idExist;
         cout << "==========================================================================\n";
         cout << "  |                           INPUT DATA PEMAIN                        |\n";
         cout << "==========================================================================\n";
-        do{
-    cout << "  | ID         : ";
-    cin >> p.id;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+       do {
+        cout << "  | ID         : ";
+         getline(cin, p.id);
 
-    if (isIdExist(tree, p.id)) {
-        cout << "  | ID sudah ada! Masukkan ID lain.\n";
-    }
-        }while(isIdExist(tree, p.id));
+        idExist = p.id.empty() || isIdExist(tree, p.id);
+
+        if (p.id.empty()) {
+            cout << "  | ID tidak boleh kosong!\n";
+        } else if (idExist) {
+            cout << "  | ID sudah ada! Masukkan ID lain.\n";
+        }
+
+    } while (idExist);
 
 
+    do {
     cout << "  | Username   : ";
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin, p.username);
+
+    if (p.username.empty()) {
+        cout << "  | Username tidak boleh kosong!\n";
+    }
+
+} while (p.username.empty());
+
     cout << "  | Score      : ";
 
     while (!(cin >> p.score)) {
