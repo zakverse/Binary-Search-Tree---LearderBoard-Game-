@@ -156,11 +156,16 @@ leaderboard inputPlayer(BinTree tree) {
 
     cout << "  | Score      : ";
 
-    while (!(cin >> p.score)) {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    while (!(cin >> p.score) || p.score < 0) {
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    if (p.score < 0) {
+        cout << "  | Score tidak boleh minus! Masukkan ulang: ";
+    } else {
         cout << "  | Score harus ANGKA! Masukkan ulang: ";
     }
+}
 
     p.level = tentukanLevel(p.score);
     p.rank = tentukanRank(p.score);

@@ -75,15 +75,31 @@ int main() {
         }
 
         case 5: {
-            int minScore, maxScore;
-            cout << "Masukkan score minimum: ";
-            cin >> minScore;
-            cout << "Masukkan score maksimum: ";
-            cin >> maxScore;
-            printHeader();
-            searchByRange(tree, minScore, maxScore);
+        int minScore, maxScore;
+
+        cout << "Masukkan score minimum: ";
+        while (!(cin >> minScore) || minScore < 0) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Score minimum harus ANGKA >= 0! Masukkan ulang: ";
+        }
+
+        cout << "Masukkan score maksimum: ";
+        while (!(cin >> maxScore) || maxScore < 0) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Score maksimum harus ANGKA >= 0! Masukkan ulang: ";
+        }
+
+        if (minScore > maxScore) {
+            cout << "Score minimum tidak boleh lebih besar dari maksimum!\n";
             break;
         }
+
+        printHeader();
+        searchByRange(tree, minScore, maxScore);
+        break;
+}
 
         case 6: {
             string id;
@@ -108,16 +124,28 @@ int main() {
         }
 
         case 8: {
-            string uname;
-            int score;
-            cout << "Masukkan Username: ";
-            cin >> uname;
-            cout << "Masukkan score baru: ";
-            cin >> score;
-            if (updateScoreByUsername(tree, uname, score))
-                cout << ">> Score berhasil diupdate.\n";
-            else
-                cout << ">> Gagal update score.\n";
+        string uname;
+        int score;
+
+        cout << "Masukkan Username: ";
+        cin >> uname;
+
+        cout << "Masukkan score baru: ";
+        while (!(cin >> score) || score < 0) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        if (score < 0)
+            cout << "Score tidak boleh minus! Masukkan ulang: ";
+        else
+            cout << "Score harus ANGKA! Masukkan ulang: ";
+    }
+
+        if (updateScoreByUsername(tree, uname, score))
+            cout << ">> Score berhasil diupdate.\n";
+        else
+            cout << ">> Gagal update score.\n";
+
             break;
         }
 
